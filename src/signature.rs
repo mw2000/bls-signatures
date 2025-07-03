@@ -529,7 +529,7 @@ mod tests {
 
     #[cfg(feature = "pairing")]
     fn hash_to_g1(msg: &[u8], suite: &[u8]) -> G1Projective {
-        <G1Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(msg, suite)
+        <G1Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(&[msg], suite)
     }
     #[cfg(feature = "blst")]
     fn hash_to_g1(msg: &[u8], suite: &[u8]) -> G1Projective {
