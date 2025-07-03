@@ -76,7 +76,7 @@ fn g2_from_slice(raw: &[u8]) -> Result<G2Affine, Error> {
 /// Hash the given message, as used in the signature.
 #[cfg(feature = "pairing")]
 pub fn hash(msg: &[u8]) -> G2Projective {
-    <G2Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(msg, CSUITE)
+    <G2Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(&[msg], CSUITE)
 }
 
 #[cfg(feature = "blst")]
@@ -538,7 +538,7 @@ mod tests {
 
     #[cfg(feature = "pairing")]
     fn hash_to_g2(msg: &[u8], suite: &[u8]) -> G2Projective {
-        <G2Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(msg, suite)
+        <G2Projective as HashToCurve<ExpandMsgXmd<sha2::Sha256>>>::hash_to_curve(&[msg], suite)
     }
     #[cfg(feature = "blst")]
     fn hash_to_g2(msg: &[u8], suite: &[u8]) -> G2Projective {
